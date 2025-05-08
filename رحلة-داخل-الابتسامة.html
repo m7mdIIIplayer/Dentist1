@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رحلة داخل الابتسامة - Inside the Smile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        primary:'#57B5E7',
+                        secondary:'#F5F5DC',
+                        tertiary: '#E6F3FF',
+                        dark: '#1F2937'
+                    },
+                    borderRadius:{
+                        'none':'0px',
+                        'sm':'4px',
+                        DEFAULT:'8px',
+                        'md':'12px',
+                        'lg':'16px',
+                        'xl':'20px',
+                        '2xl':'24px',
+                        '3xl':'32px',
+                        'full':'9999px',
+                        'button':'8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #FFFFFF;
+        }
+        .hero-section {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)), url('https://readdy.ai/api/search-image?query=A%20beautiful%20close-up%20of%20a%20perfect%20smile%20with%20white%20teeth%20against%20a%20soft%20blue%20background.%20The%20image%20shows%20a%20partial%20view%20of%20lips%20smiling%2C%20with%20clean%2C%20healthy%20teeth%20visible.%20The%20lighting%20is%20soft%20and%20professional%2C%20creating%20a%20clean%2C%20medical%20yet%20artistic%20atmosphere.%20The%20background%20transitions%20from%20white%20to%20soft%20blue&width=1200&height=600&seq=smile1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .tooth-area {
+            transition: all 0.3s ease;
+        }
+        .tooth-area:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 8px rgba(87, 181, 231, 0.5));
+        }
+        .slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-before-after {
+            position: relative;
+            overflow: hidden;
+        }
+        .slider-before-after .before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            overflow: hidden;
+        }
+        .slider-before-after .slider-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background-color: #57B5E7;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        .slider-before-after .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border: 3px solid #57B5E7;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #57B5E7;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .custom-checkbox:checked {
+            background-color: #57B5E7;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .switch-slider {
+            background-color: #57B5E7;
+        }
+        input:checked + .switch-slider:before {
+            transform: translateX(26px);
+        }
+        .custom-radio {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #57B5E7;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+        }
+        .custom-radio:checked {
+            border-color: #57B5E7;
+        }
+        .custom-radio:checked::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #57B5E7;
+        }
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #E6F3FF;
+            border-radius: 5px;
+            outline: none;
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #57B5E7;
+            cursor: pointer;
+        }
+        .custom-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #57B5E7;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+                <span class="mr-2 text-dark">رحلة داخل الابتسامة</span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 space-x-reverse">
+                <a href="#" class="text-dark hover:text-primary transition-colors">الرئيسية</a>
+                <a href="#explorer" class="text-dark hover:text-primary transition-colors">مستكشف الابتسامة</a>
+                <a href="#services" class="text-dark hover:text-primary transition-colors">خدماتنا</a>
+                <a href="#gallery" class="text-dark hover:text-primary transition-colors">معرض قبل وبعد</a>
+                <a href="#education" class="text-dark hover:text-primary transition-colors">المكتبة التعليمية</a>
+                <a href="#contact" class="text-dark hover:text-primary transition-colors">اتصل بنا</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <button class="flex items-center justify-center w-10 h-10 text-dark hover:text-primary transition-colors">
+                    <i class="ri-translate-2-line ri-lg"></i>
+                </button>
+                
+                <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">
+                    احجز موعد
+                </button>
+                
+                <button class="md:hidden flex items-center justify-center w-10 h-10 text-dark">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Mobile Menu (Hidden by default) -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="mobile-menu-overlay">
+        <div class="bg-white h-full w-64 p-5 transform translate-x-0">
+            <div class="flex justify-between items-center mb-6">
+                <a href="#" class="text-2xl font-['Pacifico'] text-primary">logo</a>
+                <button class="flex items-center justify-center w-10 h-10 text-dark" id="close-mobile-menu">
+                    <i class="ri-close-line ri-lg"></i>
+                </button>
+            </div>
+            
+            <nav class="flex flex-col space-y-4">
+                <a href="#" class="text-dark hover:text-primary transition-colors">الرئيسية</a>
+                <a href="#explorer" class="text-dark hover:text-primary transition-colors">مستكشف الابتسامة</a>
+                <a href="#services" class="text-dark hover:text-primary transition-colors">خدماتنا</a>
+                <a href="#gallery" class="text-dark hover:text-primary transition-colors">معرض قبل وبعد</a>
+                <a href="#education" class="text-dark hover:text-primary transition-colors">المكتبة التعليمية</a>
+                <a href="#contact" class="text-dark hover:text-primary transition-colors">اتصل بنا</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center pt-16">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-dark mb-6">رحلة داخل الابتسامة</h1>
+                    <p class="text-lg md:text-xl text-gray-700 mb-8">اكتشف عالماً جديداً من العناية بصحة الفم والأسنان من خلال تجربة تفاعلية فريدة تأخذك في رحلة داخل الابتسامة المثالية.</p>
+                    <button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all transform hover:scale-105 flex items-center">
+                        <span class="ml-2">ابدأ الرحلة</span>
+                        <i class="ri-arrow-left-line ri-lg"></i>
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=A%203D%20artistic%20representation%20of%20a%20perfect%20smile%20with%20white%20teeth.%20The%20image%20shows%20a%20stylized%2C%20clean%2C%20and%20artistic%20view%20of%20teeth%20and%20lips%2C%20not%20photorealistic%20but%20elegant%20and%20professional.%20The%20style%20is%20modern%2C%20clean%2C%20and%20slightly%20abstract%20with%20soft%20lighting%20and%20a%20clean%20background.%20The%20image%20conveys%20dental%20health%20and%20beauty%20without%20being%20clinical%20or%20medical&width=600&height=500&seq=smile2&orientation=portrait" alt="ابتسامة مثالية" class="rounded-xl shadow-xl max-w-full h-auto object-cover">
+                        <div class="absolute -bottom-5 -right-5 bg-white p-3 rounded-lg shadow-lg">
+                            <div class="flex items-center">
+                                <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <span class="text-sm font-medium">متاح للاستشارة</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smile Explorer Section -->
+    <section id="explorer" class="py-16 bg-tertiary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">مستكشف الابتسامة</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">اكتشف خدماتنا من خلال رحلة تفاعلية داخل الفم، حيث يمثل كل جزء خدمة متخصصة نقدمها لك</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-4xl mx-auto">
+                <div class="relative">
+                    <img src="https://readdy.ai/api/search-image?query=A%20stylized%2C%20artistic%20diagram%20of%20human%20teeth%20and%20mouth%20from%20a%20front%20view%2C%20showing%20different%20sections%20of%20teeth%20including%20front%20teeth%2C%20molars%2C%20gums%2C%20and%20roots.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20a%20white%20background.%20The%20style%20is%20modern%20and%20slightly%20abstract%20but%20clearly%20shows%20the%20dental%20anatomy%20in%20an%20elegant%2C%20non-clinical%20way&width=800&height=500&seq=teeth1&orientation=landscape" alt="مخطط الأسنان" class="w-full h-auto rounded-lg">
+                    
+                    <!-- Interactive Areas -->
+                    <div class="tooth-area absolute top-[20%] left-[40%] w-[20%] h-[20%] cursor-pointer" data-area="front">
+                        <div class="absolute inset-0 rounded-full border-2 border-primary border-opacity-0 hover:border-opacity-100 transition-all"></div>
+                    </div>
+                    
+                    <div class="tooth-area absolute top-[30%] left-[20%] w-[15%] h-[15%] cursor-pointer" data-area="molar">
+                        <div class="absolute inset-0 rounded-full border-2 border-primary border-opacity-0 hover:border-opacity-100 transition-all"></div>
+                    </div>
+                    
+                    <div class="tooth-area absolute top-[30%] right-[20%] w-[15%] h-[15%] cursor-pointer" data-area="molar">
+                        <div class="absolute inset-0 rounded-full border-2 border-primary border-opacity-0 hover:border-opacity-100 transition-all"></div>
+                    </div>
+                    
+                    <div class="tooth-area absolute top-[60%] left-[35%] w-[30%] h-[15%] cursor-pointer" data-area="gum">
+                        <div class="absolute inset-0 rounded-full border-2 border-primary border-opacity-0 hover:border-opacity-100 transition-all"></div>
+                    </div>
+                    
+                    <div class="tooth-area absolute top-[80%] left-[40%] w-[20%] h-[15%] cursor-pointer" data-area="root">
+                        <div class="absolute inset-0 rounded-full border-2 border-primary border-opacity-0 hover:border-opacity-100 transition-all"></div>
+                    </div>
+                </div>
+
+                <!-- Info Cards (Hidden by default) -->
+                <div id="info-card" class="hidden mt-6 bg-white border border-gray-200 rounded-lg p-4 shadow-md">
+                    <div id="front-info" class="hidden">
+                        <h3 class="text-xl font-bold text-dark mb-2">تجميل الأسنان الأمامية</h3>
+                        <p class="text-gray-700 mb-4">الأسنان الأمامية هي بوابة ابتسامتك. نقدم خدمات متميزة لتجميل الأسنان الأمامية بما في ذلك التبييض، الفينير، والتيجان لمنحك ابتسامة مشرقة وجذابة.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <div class="flex items-center text-gray-500">
+                                <span>مدة العلاج: 1-3 جلسات</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="molar-info" class="hidden">
+                        <h3 class="text-xl font-bold text-dark mb-2">الحشوات والتركيبات</h3>
+                        <p class="text-gray-700 mb-4">الأضراس مسؤولة عن طحن الطعام وتحتاج إلى عناية خاصة. نقدم حشوات تجميلية متطورة وتركيبات دائمة تجمع بين القوة والمظهر الطبيعي.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <div class="flex items-center text-gray-500">
+                                <span>مدة العلاج: 1-2 جلسات</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="gum-info" class="hidden">
+                        <h3 class="text-xl font-bold text-dark mb-2">علاجات اللثة</h3>
+                        <p class="text-gray-700 mb-4">اللثة السليمة أساس لابتسامة صحية. نقدم علاجات متخصصة لمشاكل اللثة بما في ذلك التهاب اللثة، أمراض اللثة المتقدمة، وتجميل خط اللثة.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <div class="flex items-center text-gray-500">
+                                <span>مدة العلاج: 2-4 جلسات</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="root-info" class="hidden">
+                        <h3 class="text-xl font-bold text-dark mb-2">علاج العصب</h3>
+                        <p class="text-gray-700 mb-4">جذور الأسنان تحتوي على أعصاب حساسة. نقدم علاجات عصب متطورة وغير مؤلمة باستخدام أحدث التقنيات للحفاظ على أسنانك الطبيعية.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <div class="flex items-center text-gray-500">
+                                <span>مدة العلاج: 1-3 جلسات</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">خدماتنا</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">نقدم مجموعة شاملة من خدمات طب الأسنان المتميزة بأحدث التقنيات وأعلى معايير الجودة</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=Close-up%20of%20beautiful%20white%20teeth%20with%20dental%20veneers%2C%20showing%20a%20perfect%20smile%20transformation.%20The%20image%20is%20clean%2C%20professional%2C%20and%20elegant%20with%20soft%20lighting%20against%20a%20light%20blue%20background.%20The%20focus%20is%20on%20the%20front%20teeth%20showing%20the%20perfect%20alignment%20and%20natural-looking%20dental%20veneers&width=400&height=300&seq=veneers1&orientation=landscape" alt="تجميل الأسنان" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تجميل الأسنان</h3>
+                        <p class="text-gray-700 mb-4">نقدم مجموعة متكاملة من خدمات تجميل الأسنان بما في ذلك الفينير، التبييض، والتيجان التجميلية لمنحك ابتسامة مثالية.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 500 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20close-up%20dental%20image%20showing%20a%20tooth%20with%20a%20modern%20composite%20filling%20being%20placed.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20soft%20lighting%20against%20a%20light%20background.%20The%20focus%20is%20on%20the%20dental%20procedure%20showing%20the%20natural-looking%20tooth%20restoration&width=400&height=300&seq=filling1&orientation=landscape" alt="الحشوات التجميلية" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">الحشوات التجميلية</h3>
+                        <p class="text-gray-700 mb-4">حشوات تجميلية بلون الأسنان الطبيعي، آمنة وعالية الجودة، تدوم لفترات طويلة وتعيد لأسنانك مظهرها الطبيعي.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 300 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20close-up%20dental%20image%20showing%20professional%20teeth%20cleaning%20procedure.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20soft%20lighting%20against%20a%20light%20background.%20The%20focus%20is%20on%20the%20dental%20hygienist%20tools%20removing%20plaque%20and%20tartar%20from%20teeth&width=400&height=300&seq=cleaning1&orientation=landscape" alt="تنظيف الأسنان" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تنظيف الأسنان</h3>
+                        <p class="text-gray-700 mb-4">تنظيف احترافي للأسنان يزيل الجير والبلاك ويمنع أمراض اللثة، مع تلميع يعيد البريق الطبيعي لأسنانك.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 200 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20close-up%20dental%20image%20showing%20a%20root%20canal%20treatment%20procedure.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20soft%20lighting%20against%20a%20light%20background.%20The%20focus%20is%20on%20the%20dental%20procedure%20showing%20the%20treatment%20of%20the%20tooth%20root&width=400&height=300&seq=rootcanal1&orientation=landscape" alt="علاج العصب" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">علاج العصب</h3>
+                        <p class="text-gray-700 mb-4">علاج متطور وغير مؤلم لمشاكل عصب الأسنان باستخدام أحدث التقنيات للحفاظ على أسنانك الطبيعية.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 800 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20close-up%20dental%20image%20showing%20dental%20implant%20procedure.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20soft%20lighting%20against%20a%20light%20background.%20The%20focus%20is%20on%20the%20dental%20implant%20being%20placed%20in%20the%20jawbone&width=400&height=300&seq=implant1&orientation=landscape" alt="زراعة الأسنان" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">زراعة الأسنان</h3>
+                        <p class="text-gray-700 mb-4">زراعة أسنان متطورة بتقنيات حديثة توفر حلاً دائماً وطبيعياً للأسنان المفقودة مع نسبة نجاح عالية.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 3000 ريال</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=A%20close-up%20dental%20image%20showing%20orthodontic%20treatment%20with%20modern%20clear%20aligners.%20The%20image%20is%20clean%2C%20professional%2C%20and%20educational%20with%20soft%20lighting%20against%20a%20light%20background.%20The%20focus%20is%20on%20the%20transparent%20aligners%20being%20fitted%20on%20teeth&width=400&height=300&seq=ortho1&orientation=landscape" alt="تقويم الأسنان" class="w-full h-full object-cover object-top">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تقويم الأسنان</h3>
+                        <p class="text-gray-700 mb-4">تقويم أسنان بأنواع متعددة تشمل التقويم الشفاف والتقليدي، مصمم خصيصاً لكل حالة لتحقيق أفضل النتائج.</p>
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">اعرف المزيد</button>
+                            <span class="text-primary">ابتداءً من 5000 ريال</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Booking Section -->
+    <section class="py-16 bg-tertiary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">احجز موعدك بسهولة</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">نظام حجز ذكي يساعدك على تحديد الخدمة المناسبة والموعد الملائم بخطوات بسيطة</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-10 max-w-3xl mx-auto">
+                <div class="chat-interface">
+                    <!-- Chat Header -->
+                    <div class="flex items-center mb-6">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="ri-customer-service-2-line ri-lg"></i>
+                        </div>
+                        <div class="mr-3">
+                            <h3 class="font-bold text-dark">المساعد الشخصي</h3>
+                            <p class="text-sm text-gray-500">متواجد للمساعدة</p>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="space-y-4 mb-6">
+                        <div class="flex">
+                            <div class="bg-tertiary rounded-lg rounded-tr-none p-3 max-w-[80%]">
+                                <p>مرحباً! أنا المساعد الشخصي لعيادة "رحلة داخل الابتسامة". كيف يمكنني مساعدتك اليوم؟</p>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <div class="bg-primary text-white rounded-lg rounded-tl-none p-3 max-w-[80%]">
+                                <p>أرغب في حجز موعد لفحص أسناني</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="bg-tertiary rounded-lg rounded-tr-none p-3 max-w-[80%]">
+                                <p>ممتاز! هل تعاني من أي مشكلة محددة في أسنانك؟</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="space-y-3 mb-6">
+                        <button class="w-full text-right bg-white border border-gray-300 hover:border-primary rounded-lg p-3 transition-colors">
+                            نعم، أعاني من ألم في أحد الأسنان
+                        </button>
+                        <button class="w-full text-right bg-white border border-gray-300 hover:border-primary rounded-lg p-3 transition-colors">
+                            أرغب في تبييض أسناني
+                        </button>
+                        <button class="w-full text-right bg-white border border-gray-300 hover:border-primary rounded-lg p-3 transition-colors">
+                            أحتاج إلى فحص دوري فقط
+                        </button>
+                        <button class="w-full text-right bg-white border border-gray-300 hover:border-primary rounded-lg p-3 transition-colors">
+                            لدي استفسار آخر
+                        </button>
+                    </div>
+
+                    <!-- Calendar (Hidden by default, would show after selecting an option) -->
+                    <div class="hidden">
+                        <h4 class="font-bold text-dark mb-3">اختر موعداً مناسباً</h4>
+                        <div class="calendar-widget bg-white border border-gray-200 rounded-lg p-4">
+                            <!-- Calendar would be implemented with JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="flex mt-4">
+                        <input type="text" placeholder="اكتب رسالتك هنا..." class="flex-grow border-none bg-gray-100 rounded-r-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="bg-primary text-white p-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors rounded-l-none">
+                            <i class="ri-send-plane-fill ri-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After Gallery -->
+    <section id="gallery" class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">معرض قبل وبعد</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">شاهد التحول المذهل في ابتسامات مرضانا من خلال معرض الصور قبل وبعد العلاج</p>
+            </div>
+
+            <div class="flex flex-wrap mb-8">
+                <button class="mr-2 mb-2 px-4 py-2 bg-primary text-white !rounded-button whitespace-nowrap">جميع الحالات</button>
+                <button class="mr-2 mb-2 px-4 py-2 bg-white text-dark border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">تجميل الأسنان</button>
+                <button class="mr-2 mb-2 px-4 py-2 bg-white text-dark border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">تقويم الأسنان</button>
+                <button class="mr-2 mb-2 px-4 py-2 bg-white text-dark border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">زراعة الأسنان</button>
+                <button class="mr-2 mb-2 px-4 py-2 bg-white text-dark border border-gray-300 !rounded-button whitespace-nowrap hover:bg-gray-100 transition-colors">تبييض الأسنان</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Before & After Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-64 slider-before-after relative">
+                        <img src="https://readdy.ai/api/search-image?query=Before%20dental%20treatment:%20Close-up%20of%20teeth%20with%20visible%20stains%2C%20discoloration%2C%20and%20minor%20misalignment.%20The%20image%20shows%20teeth%20that%20need%20cosmetic%20improvement%20but%20not%20severely%20damaged&width=400&height=300&seq=before1&orientation=landscape" alt="قبل العلاج" class="w-full h-full object-cover object-top">
+                        <div class="before">
+                            <img src="https://readdy.ai/api/search-image?query=After%20dental%20treatment:%20Close-up%20of%20the%20same%20teeth%20now%20perfectly%20white%2C%20aligned%2C%20and%20with%20beautiful%20veneers.%20The%20transformation%20shows%20professional%20cosmetic%20dentistry%20with%20perfect%20results&width=400&height=300&seq=after1&orientation=landscape" alt="بعد العلاج" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="slider-line"></div>
+                        <div class="slider-handle">
+                            <i class="ri-arrow-left-right-line text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تجميل بالفينير</h3>
+                        <p class="text-gray-700 mb-4">تحول مذهل باستخدام قشور الفينير لتصحيح لون وشكل الأسنان الأمامية.</p>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20woman%20in%20her%2030s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=patient1&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mr-3">
+                                <p class="text-sm font-medium text-dark">سارة الأحمد</p>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Before & After Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-64 slider-before-after relative">
+                        <img src="https://readdy.ai/api/search-image?query=Before%20orthodontic%20treatment:%20Close-up%20of%20teeth%20with%20visible%20misalignment%2C%20crowding%2C%20and%20spacing%20issues.%20The%20image%20shows%20teeth%20that%20need%20orthodontic%20correction&width=400&height=300&seq=before2&orientation=landscape" alt="قبل العلاج" class="w-full h-full object-cover object-top">
+                        <div class="before">
+                            <img src="https://readdy.ai/api/search-image?query=After%20orthodontic%20treatment:%20Close-up%20of%20the%20same%20teeth%20now%20perfectly%20aligned%20with%20no%20crowding%20or%20spacing%20issues.%20The%20transformation%20shows%20professional%20orthodontic%20results&width=400&height=300&seq=after2&orientation=landscape" alt="بعد العلاج" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="slider-line"></div>
+                        <div class="slider-handle">
+                            <i class="ri-arrow-left-right-line text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تقويم الأسنان الشفاف</h3>
+                        <p class="text-gray-700 mb-4">تصحيح تزاحم الأسنان باستخدام التقويم الشفاف غير المرئي خلال 18 شهر.</p>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20man%20in%20his%2020s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=patient2&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mr-3">
+                                <p class="text-sm font-medium text-dark">محمد العتيبي</p>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-half-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Before & After Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="h-64 slider-before-after relative">
+                        <img src="https://readdy.ai/api/search-image?query=Before%20teeth%20whitening:%20Close-up%20of%20teeth%20with%20visible%20yellowing%20and%20stains.%20The%20image%20shows%20teeth%20that%20need%20whitening%20treatment&width=400&height=300&seq=before3&orientation=landscape" alt="قبل العلاج" class="w-full h-full object-cover object-top">
+                        <div class="before">
+                            <img src="https://readdy.ai/api/search-image?query=After%20teeth%20whitening:%20Close-up%20of%20the%20same%20teeth%20now%20brilliantly%20white%20with%20no%20stains.%20The%20transformation%20shows%20professional%20teeth%20whitening%20results&width=400&height=300&seq=after3&orientation=landscape" alt="بعد العلاج" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div class="slider-line"></div>
+                        <div class="slider-handle">
+                            <i class="ri-arrow-left-right-line text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">تبييض الأسنان</h3>
+                        <p class="text-gray-700 mb-4">تبييض احترافي للأسنان أدى إلى تفتيح لون الأسنان بمقدار 8 درجات في جلسة واحدة.</p>
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20woman%20in%20her%2040s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=patient3&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                            </div>
+                            <div class="mr-3">
+                                <p class="text-sm font-medium text-dark">نورة القحطاني</p>
+                                <div class="flex text-yellow-400">
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                    <i class="ri-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">
+                    عرض المزيد من الحالات
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Educational Library Section -->
+    <section id="education" class="py-16 bg-tertiary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">المكتبة التعليمية</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">فيديوهات تعليمية قصيرة تشرح مختلف إجراءات طب الأسنان بطريقة مبسطة</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Video Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20the%20difference%20between%20teeth%20whitening%20and%20cleaning.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20a%20split%20view%20comparing%20both%20procedures&width=400&height=300&seq=video1&orientation=landscape" alt="تبييض الأسنان مقابل التنظيف" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">ما الفرق بين تبييض الأسنان والتنظيف؟</h3>
+                        <p class="text-gray-700 mb-4">شرح مبسط للفرق بين إجراء تبييض الأسنان وتنظيف الأسنان الاحترافي، ومتى تحتاج لكل منهما.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 3:45 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20the%20root%20canal%20procedure.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20a%20cross-section%20of%20a%20tooth%20during%20root%20canal%20treatment&width=400&height=300&seq=video2&orientation=landscape" alt="علاج العصب" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">كيف يتم علاج عصب الأسنان؟</h3>
+                        <p class="text-gray-700 mb-4">شرح مفصل لإجراء علاج عصب الأسنان، والتقنيات الحديثة التي تجعله غير مؤلم وأكثر فعالية.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 5:20 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20the%20dental%20implant%20procedure.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20a%20step-by-step%20process%20of%20dental%20implant%20placement&width=400&height=300&seq=video3&orientation=landscape" alt="زراعة الأسنان" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">مراحل زراعة الأسنان</h3>
+                        <p class="text-gray-700 mb-4">شرح تفصيلي لمراحل زراعة الأسنان من البداية وحتى تركيب التاج النهائي، والوقت اللازم لكل مرحلة.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 6:15 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20proper%20teeth%20brushing%20technique.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20the%20correct%20way%20to%20brush%20teeth%20with%20a%20toothbrush&width=400&height=300&seq=video4&orientation=landscape" alt="تنظيف الأسنان" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">الطريقة الصحيحة لتنظيف الأسنان</h3>
+                        <p class="text-gray-700 mb-4">تعلم الطريقة المثالية لتنظيف أسنانك بالفرشاة والخيط الطبي للحفاظ على صحة الفم والأسنان.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 4:10 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20dental%20veneers%20application.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20the%20process%20of%20applying%20veneers%20to%20front%20teeth&width=400&height=300&seq=video5&orientation=landscape" alt="الفينير" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">كل ما تريد معرفته عن الفينير</h3>
+                        <p class="text-gray-700 mb-4">شرح شامل عن قشور الفينير، أنواعها، مميزاتها، وكيفية تركيبها، والفرق بين البورسلين والكومبوزيت.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 5:45 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative h-48">
+                        <img src="https://readdy.ai/api/search-image?query=Educational%20dental%20animation%20showing%20childrens%20dental%20care.%20The%20image%20is%20clean%2C%20professional%20with%20a%20light%20background%2C%20showing%20proper%20dental%20care%20for%20kids%20with%20colorful%20and%20friendly%20elements&width=400&height=300&seq=video6&orientation=landscape" alt="صحة أسنان الأطفال" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                            <div class="w-16 h-16 rounded-full bg-white bg-opacity-80 flex items-center justify-center cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-dark mb-2">العناية بأسنان الأطفال</h3>
+                        <p class="text-gray-700 mb-4">نصائح وإرشادات للعناية بأسنان الأطفال منذ الولادة وحتى اكتمال الأسنان الدائمة، والوقاية من التسوس.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">المدة: 4:30 دقيقة</span>
+                            <div class="flex space-x-2 space-x-reverse">
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <button class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary transition-colors">
+                                    <i class="ri-bookmark-line"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <button class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors">
+                    عرض المزيد من الفيديوهات
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">آراء المرضى</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">استمع إلى تجارب مرضانا الحقيقية مع "رحلة داخل الابتسامة"</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial Card 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20woman%20in%20her%2030s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=testimonial1&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mr-3">
+                            <p class="text-lg font-medium text-dark">ريم السليمان</p>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"تجربتي مع عيادة رحلة داخل الابتسامة كانت رائعة من جميع النواحي. الطاقم الطبي محترف للغاية والدكتور شرح لي كل خطوة من خطوات العلاج بالتفصيل. النتيجة كانت مذهلة وفاقت توقعاتي. أنصح بشدة بهذه العيادة لكل من يبحث عن رعاية أسنان متميزة."</p>
+                    <p class="text-primary text-sm mt-4">تجميل الأسنان بالفينير - 08 مايو 2025</p>
+                </div>
+                <!-- Testimonial Card 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20man%20in%20his%2040s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=testimonial2&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mr-3">
+                            <p class="text-lg font-medium text-dark">فهد الشمري</p>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-half-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"كنت أعاني من ألم شديد في الضرس وذهبت للعيادة بدون موعد مسبق. استقبلوني على الفور وقام الدكتور بعلاج العصب بطريقة احترافية وبدون ألم يذكر. الآن بعد مرور شهرين، الألم اختفى تماماً وأستطيع تناول الطعام بشكل طبيعي. شكراً لفريق رحلة داخل الابتسامة."</p>
+                    <p class="text-primary text-sm mt-4">علاج العصب - 15 أبريل 2025</p>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                            <img src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20Middle%20Eastern%20woman%20in%20her%2020s%20with%20a%20friendly%20smile%2C%20wearing%20casual%20elegant%20clothes%20against%20a%20neutral%20background&width=100&height=100&seq=testimonial3&orientation=squarish" alt="صورة المريض" class="w-full h-full object-cover">
+                        </div>
+                        <div class="mr-3">
+                            <p class="text-lg font-medium text-dark">منيرة الدوسري</p>
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"استخدمت التقويم الشفاف لمدة سنة كاملة، وكانت النتيجة مبهرة! الدكتور كان دقيقاً جداً في متابعة الحالة شهرياً وإجراء التعديلات اللازمة. العيادة مجهزة بأحدث التقنيات والطاقم ودود للغاية. أشكرهم على منحي ابتسامة جديدة أفتخر بها."</p>
+                    <p class="text-primary text-sm mt-4">تقويم الأسنان الشفاف - 22 مارس 2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-tertiary">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">اتصل بنا</h2>
+                <p class="text-lg text-gray-700 max-w-2xl mx-auto">نحن هنا للإجابة على جميع استفساراتك. تواصل معنا عبر أي من قنوات الاتصال التالية</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-dark mb-6">أرسل رسالة</h3>
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">الاسم</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">البريد الإلكتروني</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="phone" class="block text-gray-700 mb-2">رقم الهاتف</label>
+                            <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                        </div>
+                        <div class="mb-4">
+                            <label for="service" class="block text-gray-700 mb-2">الخدمة المطلوبة</label>
+                            <div class="relative">
+                                <select id="service" class="w-full px-4 py-2 border border-gray-300 rounded appearance-none focus:outline-none focus:ring-2 focus:ring-primary pr-8">
+                                    <option value="">اختر الخدمة</option>
+                                    <option value="cosmetic">تجميل الأسنان</option>
+                                    <option value="filling">الحشوات التجميلية</option>
+                                    <option value="cleaning">تنظيف الأسنان</option>
+                                    <option value="rootcanal">علاج العصب</option>
+                                    <option value="implant">زراعة الأسنان</option>
+                                    <option value="orthodontics">تقويم الأسنان</option>
+                                </select>
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-500"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 mb-2">الرسالة</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors w-full">
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8">
+                        <h3 class="text-2xl font-bold text-dark mb-6">معلومات الاتصال</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+                                    <i class="ri-map-pin-line ri-lg"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="font-medium text-dark">العنوان</p>
+                                    <p class="text-gray-700">شارع الأمير سلطان، حي الخالدية، جدة، المملكة العربية السعودية</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+                                    <i class="ri-phone-line ri-lg"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="font-medium text-dark">الهاتف</p>
+                                    <p class="text-gray-700">+966 12 345 6789</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+                                    <i class="ri-mail-line ri-lg"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="font-medium text-dark">البريد الإلكتروني</p>
+                                    <p class="text-gray-700">info@insidethesmile.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary">
+                                    <i class="ri-time-line ri-lg"></i>
+                                </div>
+                                <div class="mr-4">
+                                    <p class="font-medium text-dark">ساعات العمل</p>
+                                    <p class="text-gray-700">السبت - الخميس: 9:00 صباحاً - 9:00 مساءً</p>
+                                    <p class="text-gray-700">الجمعة: 4:00 مساءً - 9:00 مساءً</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                        <h3 class="text-xl font-bold text-dark mb-4">تابعنا على وسائل التواصل الاجتماعي</h3>
+                        <div class="flex space-x-4 space-x-reverse">
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-instagram-line ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-twitter-x-line ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-facebook-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-snapchat-fill ri-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full text-primary hover:bg-primary hover:text-white transition-colors">
+                                <i class="ri-whatsapp-line ri-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <a href="#" class="text-2xl font-['Pacifico'] text-white">logo</a>
+                        <span class="mr-2 text-white">رحلة داخل الابتسامة</span>
+                    </div>
+                    <p class="text-gray-300 mb-6">نقدم رعاية أسنان متميزة بأحدث التقنيات وأعلى معايير الجودة، لنمنحك ابتسامة صحية وجميلة تدوم مدى الحياة.</p>
+                    <div class="flex space-x-4 space-x-reverse">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="ri-instagram-line ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="ri-twitter-x-line ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="ri-facebook-fill ri-lg"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="ri-snapchat-fill ri-lg"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">الرئيسية</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-white transition-colors">خدماتنا</a></li>
+                        <li><a href="#gallery" class="text-gray-300 hover:text-white transition-colors">معرض قبل وبعد</a></li>
+                        <li><a href="#education" class="text-gray-300 hover:text-white transition-colors">المكتبة التعليمية</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors">اتصل بنا</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">خدماتنا</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">تجميل الأسنان</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">الحشوات التجميلية</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">تنظيف الأسنان</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">علاج العصب</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">زراعة الأسنان</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">تقويم الأسنان</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4">النشرة الإخبارية</h4>
+                    <p class="text-gray-300 mb-4">اشترك في نشرتنا الإخبارية للحصول على أحدث النصائح والعروض</p>
+                    <div class="flex">
+                        <input type="email" placeholder="البريد الإلكتروني" class="flex-grow border-none bg-gray-700 text-white rounded-r-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary">
+                        <button class="bg-primary text-white p-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-colors rounded-l-none">
+                            اشتراك
+                        </button>
+                    </div>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold mb-2">وسائل الدفع</h4>
+                        <div class="flex space-x-3 space-x-reverse">
+                            <i class="ri-visa-fill ri-lg"></i>
+                            <i class="ri-mastercard-fill ri-lg"></i>
+                            <i class="ri-apple-fill ri-lg"></i>
+                            <i class="ri-paypal-fill ri-lg"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2025 رحلة داخل الابتسامة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.querySelector('button.md\\:hidden');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            
+            if (mobileMenuButton && mobileMenuOverlay && closeMobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.remove('hidden');
+                });
+                
+                closeMobileMenuButton.addEventListener('click', function() {
+                    mobileMenuOverlay.classList.add('hidden');
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smile Explorer Interactive Areas
+            const toothAreas = document.querySelectorAll('.tooth-area');
+            const infoCard = document.getElementById('info-card');
+            const frontInfo = document.getElementById('front-info');
+            const molarInfo = document.getElementById('molar-info');
+            const gumInfo = document.getElementById('gum-info');
+            const rootInfo = document.getElementById('root-info');
+            
+            if (toothAreas.length && infoCard) {
+                toothAreas.forEach(area => {
+                    area.addEventListener('click', function() {
+                        const areaType = this.getAttribute('data-area');
+                        
+                        // Hide all info divs
+                        frontInfo.classList.add('hidden');
+                        molarInfo.classList.add('hidden');
+                        gumInfo.classList.add('hidden');
+                        rootInfo.classList.add('hidden');
+                        
+                        // Show the relevant info div
+                        if (areaType === 'front') {
+                            frontInfo.classList.remove('hidden');
+                        } else if (areaType === 'molar') {
+                            molarInfo.classList.remove('hidden');
+                        } else if (areaType === 'gum') {
+                            gumInfo.classList.remove('hidden');
+                        } else if (areaType === 'root') {
+                            rootInfo.classList.remove('hidden');
+                        }
+                        
+                        // Show the info card
+                        infoCard.classList.remove('hidden');
+                    });
+                });
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Before & After Slider
+            const sliders = document.querySelectorAll('.slider-before-after');
+            
+            sliders.forEach(slider => {
+                const before = slider.querySelector('.before');
+                const handle = slider.querySelector('.slider-handle');
+                
+                let isDragging = false;
+                
+                const moveSlider = function(e) {
+                    if (!isDragging) return;
+                    
+                    const sliderRect = slider.getBoundingClientRect();
+                    let position = (e.clientX - sliderRect.left) / sliderRect.width;
+                    
+                    // Constrain position between 0 and 1
+                    position = Math.max(0, Math.min(1, position));
+                    
+                    // Update the width of the before element
+                    before.style.width = `${position * 100}%`;
+                    
+                    // Update the position of the handle and line
+                    const line = slider.querySelector('.slider-line');
+                    line.style.left = `${position * 100}%`;
+                    handle.style.left = `${position * 100}%`;
+                };
+                
+                handle.addEventListener('mousedown', function() {
+                    isDragging = true;
+                });
+                
+                document.addEventListener('mousemove', moveSlider);
+                
+                document.addEventListener('mouseup', function() {
+                    isDragging = false;
+                });
+                
+                // Touch events for mobile
+                handle.addEventListener('touchstart', function() {
+                    isDragging = true;
+                });
+                
+                slider.addEventListener('touchmove', function(e) {
+                    if (!isDragging) return;
+                    
+                    const touch = e.touches[0];
+                    const sliderRect = slider.getBoundingClientRect();
+                    let position = (touch.clientX - sliderRect.left) / sliderRect.width;
+                    
+                    // Constrain position between 0 and 1
+                    position = Math.max(0, Math.min(1, position));
+                    
+                    // Update the width of the before element
+                    before.style.width = `${position * 100}%`;
+                    
+                    // Update the position of the handle and line
+                    const line = slider.querySelector('.slider-line');
+                    line.style.left = `${position * 100}%`;
+                    handle.style.left = `${position * 100}%`;
+                });
+                
+                document.addEventListener('touchend', function() {
+                    isDragging = false;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
